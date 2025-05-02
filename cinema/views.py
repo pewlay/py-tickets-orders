@@ -47,7 +47,7 @@ class TicketViewSet(viewsets.ModelViewSet):
     serializer_class = TicketSerializer
 
 
-class OrderSetPagination(PageNumberPagination):
+class OrderPagination(PageNumberPagination):
     page_size = 3
     page_size_query_param = "page_size"
     max_page_size = 10
@@ -56,7 +56,7 @@ class OrderSetPagination(PageNumberPagination):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    pagination_class = OrderSetPagination
+    pagination_class = OrderPagination
 
     def get_queryset(self):
         queryset = self.queryset.filter(user=self.request.user)
