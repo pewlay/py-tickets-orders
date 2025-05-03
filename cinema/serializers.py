@@ -1,4 +1,5 @@
 from django.db import transaction
+from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from cinema.models import (Genre,
                            Actor,
@@ -93,7 +94,7 @@ class TicketSerializer(serializers.ModelSerializer):
         Ticket.validate_seat(
             attrs["seat"],
             attrs["movie_session"].cinema_hall.seats_in_row,
-            serializers.ValidationError
+            ValidationError
         )
 
 
